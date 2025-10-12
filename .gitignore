@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+trial-buddy-474913-e55afe6f6db5.json
+
+*.venv
