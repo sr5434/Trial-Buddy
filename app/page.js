@@ -47,6 +47,7 @@ export default function Home() {
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <h1 className="text-5xl font-extrabold">Trial Buddy</h1>
+      <p className="mt-3 text-lg">Your AI-powered assistant for clinical trial reports.</p>
       {questions.length === 0 ? (<form onSubmit={submitHandler}>
         <label
           className="mb-2 pt-6 text-sm font-medium text-gray-900 dark:text-white flex items-center gap-2"
