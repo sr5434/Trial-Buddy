@@ -48,8 +48,28 @@ export default function Home() {
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <h1 className="text-5xl font-extrabold">Trial Buddy</h1>
       {questions.length === 0 ? (<form onSubmit={submitHandler}>
-        <label className="block mb-2 pt-6 text-sm font-medium text-gray-900 dark:text-white" htmlFor="codeInput">Clinical trial ID:</label>
+        <label
+          className="mb-2 pt-6 text-sm font-medium text-gray-900 dark:text-white flex items-center gap-2"
+          htmlFor="codeInput"
+        >
+          <span>Clinical trial ID:</span>
+          <span
+            className="group relative inline-flex h-5 w-5 items-center justify-center rounded-full border border-gray-300 bg-white text-xs font-semibold text-gray-500 transition hover:bg-blue-50 hover:text-blue-600 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 cursor-help"
+            aria-describedby="nctIdTooltip"
+            tabIndex={0}
+          >
+            ?
+            <span
+              id="nctIdTooltip"
+              role="tooltip"
+              className="pointer-events-none absolute left-1/2 top-full z-10 mt-2 w-64 -translate-x-1/2 rounded-md bg-gray-900 p-2 text-xs text-white opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+            >
+              NCT IDs are unique identifiers for clinical trials registered on ClinicalTrials.gov. Use the format NCT followed by eight digits.
+            </span>
+          </span>
+        </label>
         <textarea
+  id="codeInput"
         name="linkInp"
         placeholder='e.g. NCT01234567'
         value={id}
