@@ -1,0 +1,16 @@
+{
+  "displayName": "training-datagen",
+  "model": "publishers/openai/models/gpt-oss-120b-maas",
+  "inputConfig": {
+    "instancesFormat":"jsonl",
+    "gcsSource":{
+      "uris" : "gs://question-prompts/prompts.jsonl"
+    }
+  },
+  "outputConfig": {
+    "predictionsFormat":"jsonl",
+    "gcsDestination":{
+      "outputUriPrefix": "gs://question-prompts/outputs.jsonl"
+    }
+  }
+}

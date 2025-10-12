@@ -8,6 +8,35 @@ export default function Results({ params }) {
   const [ data, setData ] = useState("");
   const [ isLoading, setIsLoading ] = useState(true);
   let pollingRef = useRef(null);
+  let copyFeedbackTimeoutRef = useRef(null);
+  const [ copyFeedback, setCopyFeedback ] = useState("");
+
+  const handleCopyLink = async () => {
+    if (copyFeedbackTimeoutRef.current) {
+      clearTimeout(copyFeedbackTimeoutRef.current);
+    }
+
+    try {
+      const shareUrl = window.location.href;
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(shareUrl);
+      } else {
+        const tempInput = document.createElement('input');
+        tempInput.value = shareUrl;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      }
+      setCopyFeedback('Link copied to clipboard.');
+    } catch (error) {
+      setCopyFeedback('Unable to copy link.');
+    }
+
+    copyFeedbackTimeoutRef.current = setTimeout(() => {
+      setCopyFeedback('');
+    }, 2500);
+  };
   useEffect(() => {
     fetch('/api/getAgentStatus', {
       method: 'POST',
@@ -31,12 +60,15 @@ export default function Results({ params }) {
           setData(json.report);
           setIsLoading(json.report === "");
         })
-      }, 60000); // Poll every 60 seconds
+      }, 10000); // Poll every 10 seconds
     };
     startPolling();
     
     return () => {
       clearInterval(pollingRef.current);
+      if (copyFeedbackTimeoutRef.current) {
+        clearTimeout(copyFeedbackTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -50,6 +82,24 @@ export default function Results({ params }) {
         </div>
       ) : (
         <div className="w-full mt-8">
+          <div className="mt-4 flex flex-col items-center">
+            <button
+              type="button"
+              onClick={handleCopyLink}
+              className="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              Copy Share Link
+            </button>
+          </div>
+          {copyFeedback && (
+            <div
+              className="fixed bottom-6 right-6 z-50 rounded-md bg-gray-900 px-4 py-3 text-sm font-medium text-white shadow-lg"
+              role="status"
+              aria-live="polite"
+            >
+              {copyFeedback}
+            </div>
+          )}
           <Markdown
             remarkPlugins={[remarkGfm]}
             components={{
