@@ -40,7 +40,7 @@ Use this information to:
 - Flag any potential eligibility issues based on their medical background
 
 WHAT I NEED:
-
+At the top of the page, write the study name and id as a heading.
 1. **Executive Summary**
    - Provide 4-6 bullet points at the very top summarizing the most critical information
    - Each bullet should be one complete sentence
