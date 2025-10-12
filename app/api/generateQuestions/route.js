@@ -19,7 +19,7 @@ export async function POST(req){
     const response = await client.responses.create({
         model: 'gpt-5',
         input: [
-            {role: "system", content: 'You are a helpful clinical trial explainer. A patient wanted to know more about a clinical trial before they join. Before you make the research report, you want to ask them 5 questions to better understand their needs. Remember to explain things in layman\'s terms.'},
+            {role: "system", content: 'You are a helpful clinical trial explainer. A patient wanted to know more about a clinical trial before they join. Before you make the research report, you want to ask them 5 questions to better understand their needs. Remember to explain things in layman\'s terms. Do not group 2 questions into one spot.'},
             {role: "user", content: `Here is the clinical trial data: ${JSON.stringify(clinicalTrialData)}. What are 5 important questions you should ask the patient to better understand their needs?`},
         ],
         text: {
