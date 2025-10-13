@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Trial Buddy
 
-## Getting Started
+## Inspiration
 
-First, run the development server:
+One of my family members entered a clinical trial that had the potential to treat a condition they had, but they ended up exiting it due to a fear that we now know was unfounded. Because of this., she still suffers from the condition, and I want to prevent misunderstandings like this from happening in the future.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## What it does
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+It generates a report explaining a clinical trial in terms that ordinary people can understand.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## How we built it
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+I uses the clinicaltrials.gov API to get information about a clinical trial. Then, the data on the clinical trials goes to GPT-5 for question generation. After the user answers the question, an agent powered by a model specialized for research tasks looks at numerous reputable sources from across the web to explain the clinical trial, including risks, eligibility requirements, potential benefits, and more, all in terms that an ordinary person can understand.
 
-## Learn More
+## Challenges we ran into
 
-To learn more about Next.js, take a look at the following resources:
+I tried to train a custom model but ultimately ran out of time due to the time-consuming nature of training.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Accomplishments that we're proud of
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+I am proud that I was able to create a working agent. I am also proud that I built this as a solo dev.
 
-## Deploy on Vercel
+## What we learned
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+I how to use polling to enable long running tasks without facing request timeouts.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## What's next for Trial Buddy
+
+Instead of using a model that is designed for general research tasks, I plan to train my own model using reinforcement learning to maximize performance and efficiency for my task.
+
+## Note for testers
+
+The agent can take up to 15 minutes to perform research, so I recommend starting a run and then working on other things while you wait.
