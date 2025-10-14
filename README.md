@@ -1,9 +1,5 @@
 # Trial Buddy
 
-## Inspiration
-
-One of my family members entered a clinical trial that had the potential to treat a condition they had, but they ended up exiting it due to a fear that we now know was unfounded. Because of this., she still suffers from the condition, and I want to prevent misunderstandings like this from happening in the future.
-
 ## What it does
 
 It generates a report explaining a clinical trial in terms that ordinary people can understand.
